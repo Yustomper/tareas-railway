@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5"> TAREAS </h1>
+
+            <ul class="list-group">
+            {% for task in tasks %}
+            <a class="list-group-item" href="{% url 'task_detail' task.id %}">
+                <header class="d-flex justify-content-between">
+                    {% if task.important %}
+
+                    <h1 class="fw-bold text-success">{{task.title}}</h1>
+                    {% else %}
+                    <h1 class="fw-bold">{{task.title}}</h1> 
+                    {% endif %}
+                    {% if task.datecompleted is not None %}
+                    <p>✅{{task.user.username}}</p>
+                    {% else %}
+                    <p>⌛{{task.user.username}}</p>
+                    {% endif %}
+                    
+                </header>
+                <p>{{task.description}}</p>
+                
+            
+
+
+            </a>
+            {% endfor %}
+
+
+
+            
+
+
+        </div>
+
+    </div>
+
+
+</main>
+
+{% endblock %}
